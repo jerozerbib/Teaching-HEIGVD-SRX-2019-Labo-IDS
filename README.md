@@ -290,7 +290,8 @@ alert tcp any any -> any any (msg:"Mon nom!"; content:"Rubinstein"; sid:4000015;
 
 **Reponse :**    
 
-La règle envoie une alerte quand n'importe qui, sur n'importe quel port envoie vers n'importe quelle adresse sur tous les ports
+La règle envoie une alerte quand n'importe qui, sur n'importe quel port envoie vers n'importe quelle adresse sur tous les ports en protocole TCP.
+Le comportement de l'alerte est d'écrire dans le journal "Mon nom!" lorsqu'elle trouve dans les logs une occurence de "Rubinstein".
 
 ---
 
@@ -305,6 +306,98 @@ sudo snort -c myrules.rules -i eth0
 ---
 
 **Reponse :**  
+
+
+Initialisation de snort.
+
+        --== Initializing Snort ==--
+Initializing Output Plugins!
+Initializing Preprocessors!
+Initializing Plug-ins!
+Parsing Rules file "myrules.rules"
+Tagged Packet Limit: 256
+Log directory = /var/log/snort
+
+Lors de cette étape, snort regarde dans le fichier de règles quelles sont les règles à utiliser. 
+Dans notre cas, snort trouve une règle ce qui est normal. 
+Il s'agit bel et bien d'une règle de detection car nous voulons monitorer les accès sur des sites en HTTP avec le mot-clé Pikachu. 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++
+Initializing rule chains...
+1 Snort rules read
+    1 detection rules
+    0 decoder rules
+    0 preprocessor rules
+1 Option Chains linked into 1 Chain Headers
+0 Dynamic rules
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Pendant cette partie, nous voulons assigner le nombre de ports à analyser et à qui nous devons le faire. 
+Dans notre cas, nous devons simplement surveiller les ports en TCP pour toutes les adresses (source comme destination). 
+
++-------------------[Rule Port Counts]---------------------------------------
+|             tcp     udp    icmp      ip
+|     src       0       0       0       0
+|     dst       0       0       0       0
+|     any       1       0       0       0
+|      nc       0       0       0       0
+|     s+d       0       0       0       0
++----------------------------------------------------------------------------
+
++-----------------------[detection-filter-config]------------------------------
+| memory-cap : 1048576 bytes
++-----------------------[detection-filter-rules]-------------------------------
+| none
+-------------------------------------------------------------------------------
+
++-----------------------[rate-filter-config]-----------------------------------
+| memory-cap : 1048576 bytes
++-----------------------[rate-filter-rules]------------------------------------
+| none
+-------------------------------------------------------------------------------
+
++-----------------------[event-filter-config]----------------------------------
+| memory-cap : 1048576 bytes
++-----------------------[event-filter-global]----------------------------------
++-----------------------[event-filter-local]-----------------------------------
+| none
++-----------------------[suppression]------------------------------------------
+| none
+-------------------------------------------------------------------------------
+Rule application order: activation->dynamic->pass->drop->sdrop->reject->alert->log
+Verifying Preprocessor Configurations!
+
+[ Port Based Pattern Matching Memory ]
++-[AC-BNFA Search Info Summary]------------------------------
+| Instances        : 1
+| Patterns         : 1
+| Pattern Chars    : 8
+| Num States       : 8
+| Num Match States : 1
+| Memory           :   1.62Kbytes
+|   Patterns       :   0.05K
+|   Match Lists    :   0.09K
+|   Transitions    :   1.09K
++-------------------------------------------------
+pcap DAQ configured to passive.
+Acquiring network traffic from "eth0".
+Reload thread starting...
+Reload thread started, thread 0x7fcce759f700 (2107)
+Decoding Ethernet
+
+
+Fin de l'initialisation, nous pouvons donc passer à l'analyse.
+
+        --== Initialization Complete ==--
+
+   ,,_     -*> Snort! <*-
+  o"  )~   Version 2.9.7.0 GRE (Build 149) 
+   ''''    By Martin Roesch & The Snort Team: http://www.snort.org/contact#team
+           Copyright (C) 2014 Cisco and/or its affiliates. All rights reserved.
+           Copyright (C) 1998-2013 Sourcefire, Inc., et al.
+           Using libpcap version 1.8.1
+           Using PCRE version: 8.39 2016-06-14
+           Using ZLIB version: 1.2.11
 
 ---
 
