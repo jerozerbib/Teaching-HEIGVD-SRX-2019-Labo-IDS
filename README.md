@@ -344,7 +344,7 @@ Dans notre cas, nous devons simplement surveiller les ports en TCP pour toutes l
 |     s+d       0       0       0       0  
 +----------------------------------------------------------------------------   
 
-`+-----------------------[detection-filter-config]------------------------------  
++-----------------------[detection-filter-config]------------------------------  
 | memory-cap : 1048576 bytes  
 +-----------------------[detection-filter-rules]-------------------------------  
 | none
@@ -363,8 +363,7 @@ Dans notre cas, nous devons simplement surveiller les ports en TCP pour toutes l
 | none
 +-----------------------[suppression]------------------------------------------  
 | none
--------------------------------------------------------------------------------  
-`
+
 Rule application order: activation->dynamic->pass->drop->sdrop->reject->alert->log
 Verifying Preprocessor Configurations!
 
