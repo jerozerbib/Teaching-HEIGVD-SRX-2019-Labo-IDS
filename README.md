@@ -362,8 +362,8 @@ Dans notre cas, nous devons simplement surveiller les ports en TCP pour toutes l
 +-----------------------[suppression]------------------------------------------  
 | none  
 
-Rule application order: activation->dynamic->pass->drop->sdrop->reject->alert->log
-Verifying Preprocessor Configurations!
+Rule application order: activation->dynamic->pass->drop->sdrop->reject->alert->log   
+Verifying Preprocessor Configurations!  
 
 [ Port Based Pattern Matching Memory ]  
 +-[AC-BNFA Search Info Summary]------------------------------  
