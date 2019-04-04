@@ -335,14 +335,14 @@ Initializing rule chains...
 Pendant cette partie, nous voulons assigner le nombre de ports à analyser et à qui nous devons le faire. 
 Dans notre cas, nous devons simplement surveiller les ports en TCP pour toutes les adresses (source comme destination). 
 
-+-------------------[Rule Port Counts]---------------------------------------
-|             tcp     udp    icmp      ip
-|     src       0       0       0       0
-|     dst       0       0       0       0
-|     any       1       0       0       0
-|      nc       0       0       0       0
-|     s+d       0       0       0       0
-+----------------------------------------------------------------------------
++-------------------[Rule Port Counts]---------------------------------------  
+|             tcp     udp    icmp      ip  
+|     src       0       0       0       0  
+|     dst       0       0       0       0  
+|     any       1       0       0       0  
+|      nc       0       0       0       0  
+|     s+d       0       0       0       0  
++----------------------------------------------------------------------------  
 
 +-----------------------[detection-filter-config]------------------------------
 | memory-cap : 1048576 bytes
