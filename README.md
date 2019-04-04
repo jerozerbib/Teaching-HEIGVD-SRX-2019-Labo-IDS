@@ -384,18 +384,18 @@ Reload thread started, thread 0x7fcce759f700 (2107)
 Decoding Ethernet  
 
 
-Fin de l'initialisation, nous pouvons donc passer à l'analyse.
+Fin de l'initialisation, nous pouvons donc passer à l'analyse.  
 
-        --== Initialization Complete ==--
+        --== Initialization Complete ==--  
 
-   ,,_     -*> Snort! <*-
-  o"  )~   Version 2.9.7.0 GRE (Build 149) 
-   ''''    By Martin Roesch & The Snort Team: http://www.snort.org/contact#team
-           Copyright (C) 2014 Cisco and/or its affiliates. All rights reserved.
-           Copyright (C) 1998-2013 Sourcefire, Inc., et al.
-           Using libpcap version 1.8.1
-           Using PCRE version: 8.39 2016-06-14
-           Using ZLIB version: 1.2.11
+   ,,_     -*> Snort! <*-  
+  o"  )~   Version 2.9.7.0 GRE (Build 149)   
+   ''''    By Martin Roesch & The Snort Team: http://www.snort.org/contact#team  
+           Copyright (C) 2014 Cisco and/or its affiliates. All rights reserved.  
+           Copyright (C) 1998-2013 Sourcefire, Inc., et al.  
+           Using libpcap version 1.8.1  
+           Using PCRE version: 8.39 2016-06-14  
+           Using ZLIB version: 1.2.11  
 
 ---
 
