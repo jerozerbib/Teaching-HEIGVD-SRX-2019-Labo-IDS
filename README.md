@@ -310,18 +310,21 @@ sudo snort -c myrules.rules -i eth0
 
 Initialisation de snort.
 
-        --== Initializing Snort ==--
+```
+--== Initializing Snort ==--
 Initializing Output Plugins!  
 Initializing Preprocessors!  
 Initializing Plug-ins!  
 Parsing Rules file "myrules.rules"  
 Tagged Packet Limit: 256  
 Log directory = /var/log/snort  
+```
 
 Lors de cette étape, snort regarde dans le fichier de règles quelles sont les règles à utiliser.
 Dans notre cas, snort trouve une règle ce qui est normal.
 Il s'agit bel et bien d'une règle de detection car nous voulons monitorer les accès sur des sites en HTTP avec le mot-clé Pikachu.
 
+```
 +++++++++++++++++++++++++++++++++++++++++++++++++++  
 Initializing rule chains...  
 1 Snort rules read  
@@ -330,11 +333,13 @@ Initializing rule chains...
     0 preprocessor rules  
 1 Option Chains linked into 1 Chain Headers  
 0 Dynamic rules  
-+++++++++++++++++++++++++++++++++++++++++++++++++++  
++++++++++++++++++++++++++++++++++++++++++++++++++++
+```  
 
 Pendant cette partie, nous voulons assigner le nombre de ports à analyser et à qui nous devons le faire.
 Dans notre cas, nous devons simplement surveiller les ports en TCP pour toutes les adresses (source comme destination).
 
+```
 +-------------------[Rule Port Counts]---------------------------------------  
 |             tcp     udp    icmp      ip  
 |     src       0       0       0       0  
@@ -382,21 +387,23 @@ Acquiring network traffic from "eth0".
 Reload thread starting...  
 Reload thread started, thread 0x7fcce759f700 (2107)  
 Decoding Ethernet  
-
+```
 
 Fin de l'initialisation, nous pouvons donc passer à l'analyse.  
 
-        --== Initialization Complete ==--  
+```
+--== Initialization Complete ==--  
 
-   ,,_     -*> Snort! <*-  
-  o"  )~   Version 2.9.7.0 GRE (Build 149)   
-   ''''    By Martin Roesch & The Snort Team: http://www.snort.org/contact#team  
-           Copyright (C) 2014 Cisco and/or its affiliates. All rights reserved.  
-           Copyright (C) 1998-2013 Sourcefire, Inc., et al.  
-           Using libpcap version 1.8.1  
-           Using PCRE version: 8.39 2016-06-14  
-           Using ZLIB version: 1.2.11  
+,,_     -*> Snort! <*-  
+o"  )~   Version 2.9.7.0 GRE (Build 149)   
+''''    By Martin Roesch & The Snort Team: http://www.snort.org/contact#team  
+   Copyright (C) 2014 Cisco and/or its affiliates. All rights reserved.  
+   Copyright (C) 1998-2013 Sourcefire, Inc., et al.  
+   Using libpcap version 1.8.1  
+   Using PCRE version: 8.39 2016-06-14  
+   Using ZLIB version: 1.2.11  
 
+```
 ---
 
 Aller à un site web contenant votre nom ou votre mot clé que vous avez choisi dans son text (il faudra chercher un peu pour trouver un site en http...). Ensuite, arrêter Snort avec `CTRL-C`.
@@ -409,20 +416,21 @@ Aller à un site web contenant votre nom ou votre mot clé que vous avez choisi 
 
 Comme le montre l'extrait de la console ci-dessous, nous pouvons voir que lors de l'arrêt avec un `Ctrl-C`, *snort* fait un résumé complet de tout ce qu'il s'est passé pendant le temps écoulé.
 
+```
 ===============================================================================  
 Run time for packet processing was 75.135757 seconds  
 Snort processed 10148 packets.  
 Snort ran for 0 days 0 hours 1 minutes 15 seconds  
    Pkts/min:        10148  
    Pkts/sec:          135  
-*===============================================================================*  
+===============================================================================  
 Memory usage summary:   
   Total non-mmapped bytes (arena):       2297856  
   Bytes in mapped regions (hblkhd):      17252352  
   Total allocated space (uordblks):      2072576  
   Total free space (fordblks):           225280  
   Topmost releasable block (keepcost):   68368  
-*===============================================================================*  
+===============================================================================  
 Packet I/O Totals:  
    Received:        10185  
    Analyzed:        10148 ( 99.637%)  
@@ -430,7 +438,7 @@ Packet I/O Totals:
    Filtered:            0 (  0.000%)  
 Outstanding:           37 (  0.363%)  
    Injected:            0   
-*===============================================================================*  
+===============================================================================
 Breakdown by protocol (includes rebuilt packets):  
         Eth:        10148 (100.000%)  
        VLAN:            0 (  0.000%)  
@@ -479,7 +487,7 @@ Bad Chk Sum:            0 (  0.000%)
      S5 G 1:            0 (  0.000%)  
      S5 G 2:            0 (  0.000%)  
       Total:        10148  
-*===============================================================================*  
+===============================================================================  
 Action Stats:  
      Alerts:            6 (  0.059%)  
      Logged:            6 (  0.059%)  
@@ -498,7 +506,8 @@ Verdicts:
   Blacklist:            0 (  0.000%)  
      Ignore:            0 (  0.000%)  
       Retry:            0 (  0.000%)  
-*===============================================================================*
+===============================================================================
+```
 
 Snort exiting  
 
@@ -515,135 +524,136 @@ Aller au répertoire /var/log/snort. Ouvrir le fichier `alert`. Vérifier qu'il 
 
 En affichant les logs en console avec `cat`, nous avons pu voir l'affichage ci-dessous.
 
-[\*\*] [1:4000001:3] ICMP Packet [\*\*]  
+```
+[**] [1:4000001:3] ICMP Packet [**]  
 [Priority: 0]  
 04/02-09:59:56.610976 fe80::c671:feff:fe97:1faf -> ff02::1  
 IPV6-ICMP TTL:1 TOS:0x0 ID:256 IpLen:40 DgmLen:72  
 
-[\*\*] [1:4000001:3] ICMP Packet [\*\*]  
+[**] [1:4000001:3] ICMP Packet [**]  
 [Priority: 0]  
 04/02-09:59:57.487644 10.192.92.22 -> 172.217.168.68  
 ICMP TTL:64 TOS:0x0 ID:28266 IpLen:20 DgmLen:84 DF  
 Type:8  Code:0  ID:10223   Seq:1  ECHO  
 
-[\*\*] [1:4000001:3] ICMP Packet [\*\*]  
+[**] [1:4000001:3] ICMP Packet [**]  
 [Priority: 0]  
 04/02-09:59:57.527137 172.217.168.68 -> 10.192.92.22  
 ICMP TTL:52 TOS:0x0 ID:0 IpLen:20 DgmLen:84  
 Type:0  Code:0  ID:10223  Seq:1  ECHO REPLY  
 
-[\*\*] [1:4000001:3] ICMP Packet [\*\*]  
+[**] [1:4000001:3] ICMP Packet [**]  
 [Priority: 0]  
 04/02-09:59:58.488690 10.192.92.22 -> 172.217.168.68  
 ICMP TTL:64 TOS:0x0 ID:28389 IpLen:20 DgmLen:84 DF  
 Type:8  Code:0  ID:10223   Seq:2  ECHO  
 
-[\*\*] [1:4000001:3] ICMP Packet [\*\*]  
+[**] [1:4000001:3] ICMP Packet [**]  
 [Priority: 0]  
 04/02-09:59:58.503097 172.217.168.68 -> 10.192.92.22  
 ICMP TTL:52 TOS:0x0 ID:0 IpLen:20 DgmLen:84  
 Type:0  Code:0  ID:10223  Seq:2  ECHO REPLY  
 
-[\*\*] [1:4000001:3] ICMP Packet [\*\*]  
+[**] [1:4000001:3] ICMP Packet [**]  
 [Priority: 0]  
 04/02-09:59:59.490924 10.192.92.22 -> 172.217.168.68  
 ICMP TTL:64 TOS:0x0 ID:28495 IpLen:20 DgmLen:84 DF  
 Type:8  Code:0  ID:10223   Seq:3  ECHO  
 
-[\*\*] [1:4000001:3] ICMP Packet [\*\*]  
+[**] [1:4000001:3] ICMP Packet [**]  
 [Priority: 0]  
 04/02-09:59:59.500923 172.217.168.68 -> 10.192.92.22  
 ICMP TTL:52 TOS:0x0 ID:0 IpLen:20 DgmLen:84  
 Type:0  Code:0  ID:10223  Seq:3  ECHO REPLY  
 
-[\*\*] [1:4000001:3] ICMP Packet [\*\*]  
+[**] [1:4000001:3] ICMP Packet [**]  
 [Priority: 0]  
 04/02-10:00:00.492755 10.192.92.22 -> 172.217.168.68  
 ICMP TTL:64 TOS:0x0 ID:28555 IpLen:20 DgmLen:84 DF  
 Type:8  Code:0  ID:10223   Seq:4  ECHO  
 
-[\*\*] [1:4000001:3] ICMP Packet [\*\*]  
+[**] [1:4000001:3] ICMP Packet [**]  
 [Priority: 0]  
 04/02-10:00:00.506191 172.217.168.68 -> 10.192.92.22  
 ICMP TTL:52 TOS:0x0 ID:0 IpLen:20 DgmLen:84  
 Type:0  Code:0  ID:10223  Seq:4  ECHO REPLY  
 
-[\*\*] [1:4000001:3] ICMP Packet [\*\*]  
+[**] [1:4000001:3] ICMP Packet [**]  
 [Priority: 0]  
 04/02-10:00:00.621856 fe80::6672:87e9:531a:4f69 -> ff02::1:ff1a:4f69  
 IPV6-ICMP TTL:1 TOS:0x0 ID:256 IpLen:40 DgmLen:72  
 
-[\*\*] [1:4000001:3] ICMP Packet [\*\*]  
+[**] [1:4000001:3] ICMP Packet [**]  
 [Priority: 0]  
 04/02-10:00:01.390276 fe80::6672:87e9:531a:4f69 -> ff02::fb  
 IPV6-ICMP TTL:1 TOS:0x0 ID:256 IpLen:40 DgmLen:72  
 
-[\*\*] [1:4000001:3] ICMP Packet [\*\*]  
+[**] [1:4000001:3] ICMP Packet [**]  
 [Priority: 0]  
 04/02-10:00:01.494354 10.192.92.22 -> 172.217.168.68  
 ICMP TTL:64 TOS:0x0 ID:28580 IpLen:20 DgmLen:84 DF  
 Type:8  Code:0  ID:10223   Seq:5  ECHO  
 
-[\*\*] [1:4000001:3] ICMP Packet [\*\*]  
+[**] [1:4000001:3] ICMP Packet [**]  
 [Priority: 0]  
 04/02-10:00:01.505530 172.217.168.68 -> 10.192.92.22  
 ICMP TTL:52 TOS:0x0 ID:0 IpLen:20 DgmLen:84  
 Type:0  Code:0  ID:10223  Seq:5  ECHO REPLY  
 
-[\*\*] [1:4000001:3] ICMP Packet [\*\*]  
+[**] [1:4000001:3] ICMP Packet [**]  
 [Priority: 0]  
 04/02-10:00:02.495402 10.192.92.22 -> 172.217.168.68  
 ICMP TTL:64 TOS:0x0 ID:28811 IpLen:20 DgmLen:84 DF  
 Type:8  Code:0  ID:10223   Seq:6  ECHO  
 
-[\*\*] [1:4000001:3] ICMP Packet [\*\*]  
+[**] [1:4000001:3] ICMP Packet [**]  
 [Priority: 0]  
 04/02-10:00:02.511304 172.217.168.68 -> 10.192.92.22  
 ICMP TTL:52 TOS:0x0 ID:0 IpLen:20 DgmLen:84  
 Type:0  Code:0  ID:10223  Seq:6  ECHO REPLY  
 
-[\*\*] [1:4000015:1] Mon nom! [\*\*]  
+[**] [1:4000015:1] Mon nom! [**]  
 [Priority: 0]  
 04/04-10:32:37.919331 10.192.92.22:37028 -> 172.82.228.20:80  
 TCP TTL:64 TOS:0x0 ID:12622 IpLen:20 DgmLen:1234 DF  
-\*\*\*AP\*\*\* Seq: 0x7109A85B  Ack: 0x73463F9D  Win: 0xE5  TcpLen: 32
+***AP*** Seq: 0x7109A85B  Ack: 0x73463F9D  Win: 0xE5  TcpLen: 32
 TCP Options (3) => NOP NOP TS: 924447068 397238944  
 
-[\*\*] [1:4000015:1] Mon nom! [\*\*]  
+[**] [1:4000015:1] Mon nom! [**]  
 [Priority: 0]  
 04/04-10:32:37.943027 172.82.228.20:80 -> 10.192.92.22:37028  
 TCP TTL:49 TOS:0x0 ID:56228 IpLen:20 DgmLen:1424  
-\*\*\*AP\*\*\* Seq: 0x73463F9D  Ack: 0x7109ACF9  Win: 0x3E  TcpLen: 32  
+***AP*** Seq: 0x73463F9D  Ack: 0x7109ACF9  Win: 0x3E  TcpLen: 32  
 TCP Options (3) => NOP NOP TS: 397238968 924447068  
 
-[\*\*] [1:4000015:1] Mon nom! [\*\*]  
+[**] [1:4000015:1] Mon nom! [**]  
 [Priority: 0]  
 04/04-10:32:37.948690 10.192.92.22:37028 -> 172.82.228.20:80  
 TCP TTL:64 TOS:0x0 ID:12624 IpLen:20 DgmLen:1335 DF  
-\*\*\*AP\*\*\* Seq: 0x7109ACF9  Ack: 0x734644F9  Win: 0xFA  TcpLen: 32  
+***AP*** Seq: 0x7109ACF9  Ack: 0x734644F9  Win: 0xFA  TcpLen: 32  
 TCP Options (3) => NOP NOP TS: 924447096 397238968  
 
-[\*\*] [1:4000015:1] Mon nom! [\*\*]  
+[**] [1:4000015:1] Mon nom! [**]  
 [Priority: 0]  
 04/04-10:32:40.956362 10.192.92.22:37028 -> 172.82.228.20:80  
 TCP TTL:64 TOS:0x0 ID:12626 IpLen:20 DgmLen:1285 DF  
-\*\*\*AP\*\*\* Seq: 0x7109B1FC  Ack: 0x734647CF  Win: 0x10F  TcpLen: 32  
+***AP*** Seq: 0x7109B1FC  Ack: 0x734647CF  Win: 0x10F  TcpLen: 32  
 TCP Options (3) => NOP NOP TS: 924450103 397238998  
 
-[\*\*] [1:4000015:1] Mon nom! [\*\*]  
+[**] [1:4000015:1] Mon nom! [**]  
 [Priority: 0]  
 04/04-10:32:56.197565 10.192.92.22:45096 -> 195.176.255.72:80  
 TCP TTL:64 TOS:0x0 ID:60103 IpLen:20 DgmLen:905 DF  
-\*\*\*AP\*\*\* Seq: 0xAE904264  Ack: 0xE65339EE  Win: 0xF7  TcpLen: 32  
+***AP*** Seq: 0xAE904264  Ack: 0xE65339EE  Win: 0xF7  TcpLen: 32  
 TCP Options (3) => NOP NOP TS: 1122745231 2690542413  
 
-[\*\*] [1:4000015:1] Mon nom! [\*\*]  
+[**] [1:4000015:1] Mon nom! [**]  
 [Priority: 0]  
 04/04-10:33:15.575959 10.192.92.22:45096 -> 195.176.255.72:80  
 TCP TTL:64 TOS:0x0 ID:60105 IpLen:20 DgmLen:1052 DF  
-\*\*\*AP\*\*\* Seq: 0xAE9045B9  Ack: 0xE6533AE6  Win: 0x10A  TcpLen: 32  
+***AP*** Seq: 0xAE9045B9  Ack: 0xE6533AE6  Win: 0x10A  TcpLen: 32  
 TCP Options (3) => NOP NOP TS: 1122764601 2690542638  
-
+```
 
 Dans les *logs* ci-dessus, nous voyons des paquets qui ne devraient pas être là.
 En  effet, les paquets `ICMP` n'ont pas leur place ici car notre règle spécifie précisment que nous ne voulons filtrer que les paquets en `TCP`.
