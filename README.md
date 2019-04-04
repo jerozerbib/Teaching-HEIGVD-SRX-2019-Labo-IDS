@@ -664,7 +664,16 @@ En effet, nous pouvons voir la nomenclature `[rev:sid:rev] msg`.
 Cela nous montre bien qu'il s'agit de notre paquet.  
 La deuxième ligne permet définir la priorité du paquet (par défaut 0).  
 La troisième ligne définit la communication : `Date ip[src]:port -> ip[dest]:port`  
-La quatrième ligne permet de définir
+La quatrième ligne permet de définir les différents champs de `TCP`.
+- `TTL` : *Time To Live* : temps de conservation d'une donnée
+- `TOS` : *Type of Service* : Utilisation pour le `DSCP` et `ECN`
+- `ID` : identifiant du datagramme IP
+- `IpLen` : Taille de l'entête IP.
+- `DgmLen` :Taille totale du datagramme
+- `Seq` et `Ack `: Ces deux valeurs sont coordonnées l'une par rapport à l'autre et sont des valeurs clés pour la handshake `TCP`
+- `Win` : Fenre coulissante
+- `TcpLen` : Taille du segment `TCP`
+- `TCP Options (3) => NOP NOP TS: 924450103 397238998` : Taille de l'option `TCP` est de 3 et les options suivent.
 
 
 ---
@@ -725,6 +734,21 @@ Essayer d'écrire une règle qui Alerte qu'une tentative de session SSH a été 
 
 **Reponse :**  
 
+
+Rule:
+`alert tcp any any -> 10.192.107.96 22 (msg:"SSH login attempt";sid:4000001; rev:3;)`  
+Notre règle permet d'alerter lorsque n'importe qui envoie vers l'adresse 10.192.107.96 sur le port 22 (`ssh`) avec le message : `[1:4000001:3] SSH login attempt` comme entête.
+
+```
+Alert:
+[**] [1:4000001:3] SSH login attempt [**]
+[Priority: 0]
+04/04-11:31:26.399345 10.192.95.181:61002 -> 10.192.107.96:22
+TCP TTL:127 TOS:0x0 ID:17998 IpLen:20 DgmLen:52 DF
+******S* Seq: 0xE60EBC14  Ack: 0x0  Win: 0xFAF0  TcpLen: 32
+TCP Options (6) => MSS: 1460 NOP WS: 8 NOP NOP SackOK
+```
+
 ---
 
 --
@@ -739,6 +763,8 @@ Lancer Wireshark et faire une capture du trafic sur l'interface connectée au br
 
 **Reponse :**  
 
+- Pour un fichier log : `snort -r /var/log/snort/snort.log.1554391345`
+- Pour un fichier pcap : `snort -r /root/wireshark.pcap`
 ---
 
 Utiliser l'option correcte de Snort pour analyser le fichier de capture Wireshark.
@@ -748,6 +774,9 @@ Utiliser l'option correcte de Snort pour analyser le fichier de capture Wireshar
 ---
 
 **Reponse :**  
+
+Snort va analyser le fichier de capture et afficher les statistiques sur les paquets (comme avec l'analyse en temps réel).
+Par défaut, aucune alerte n'est générée. En précisant un fichier de conf snort lors de l'analyse du PCAP des alertes seront générées si besoin.
 
 ---
 
