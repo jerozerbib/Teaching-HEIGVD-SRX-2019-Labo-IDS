@@ -311,26 +311,26 @@ sudo snort -c myrules.rules -i eth0
 Initialisation de snort.
 
         --== Initializing Snort ==--
-Initializing Output Plugins!
-Initializing Preprocessors!
-Initializing Plug-ins!
-Parsing Rules file "myrules.rules"
-Tagged Packet Limit: 256
-Log directory = /var/log/snort
+Initializing Output Plugins!  
+Initializing Preprocessors!  
+Initializing Plug-ins!  
+Parsing Rules file "myrules.rules"  
+Tagged Packet Limit: 256  
+Log directory = /var/log/snort  
 
 Lors de cette étape, snort regarde dans le fichier de règles quelles sont les règles à utiliser. 
 Dans notre cas, snort trouve une règle ce qui est normal. 
 Il s'agit bel et bien d'une règle de detection car nous voulons monitorer les accès sur des sites en HTTP avec le mot-clé Pikachu. 
 
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-Initializing rule chains...
-1 Snort rules read
-    1 detection rules
-    0 decoder rules
-    0 preprocessor rules
-1 Option Chains linked into 1 Chain Headers
-0 Dynamic rules
-+++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++  
+Initializing rule chains...  
+1 Snort rules read  
+    1 detection rules  
+    0 decoder rules  
+    0 preprocessor rules  
+1 Option Chains linked into 1 Chain Headers  
+0 Dynamic rules  
++++++++++++++++++++++++++++++++++++++++++++++++++++  
 
 Pendant cette partie, nous voulons assigner le nombre de ports à analyser et à qui nous devons le faire. 
 Dans notre cas, nous devons simplement surveiller les ports en TCP pour toutes les adresses (source comme destination). 
