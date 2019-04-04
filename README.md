@@ -365,23 +365,23 @@ Dans notre cas, nous devons simplement surveiller les ports en TCP pour toutes l
 Rule application order: activation->dynamic->pass->drop->sdrop->reject->alert->log
 Verifying Preprocessor Configurations!
 
-[ Port Based Pattern Matching Memory ]
-+-[AC-BNFA Search Info Summary]------------------------------
-| Instances        : 1
-| Patterns         : 1
-| Pattern Chars    : 8
-| Num States       : 8
-| Num Match States : 1
-| Memory           :   1.62Kbytes
-|   Patterns       :   0.05K
-|   Match Lists    :   0.09K
-|   Transitions    :   1.09K
-+-------------------------------------------------
-pcap DAQ configured to passive.
-Acquiring network traffic from "eth0".
-Reload thread starting...
-Reload thread started, thread 0x7fcce759f700 (2107)
-Decoding Ethernet
+[ Port Based Pattern Matching Memory ]  
++-[AC-BNFA Search Info Summary]------------------------------  
+| Instances        : 1  
+| Patterns         : 1  
+| Pattern Chars    : 8  
+| Num States       : 8  
+| Num Match States : 1  
+| Memory           :   1.62Kbytes  
+|   Patterns       :   0.05K  
+|   Match Lists    :   0.09K  
+|   Transitions    :   1.09K  
++-------------------------------------------------  
+pcap DAQ configured to passive.  
+Acquiring network traffic from "eth0".  
+Reload thread starting...  
+Reload thread started, thread 0x7fcce759f700 (2107)  
+Decoding Ethernet  
 
 
 Fin de l'initialisation, nous pouvons donc passer à l'analyse.
