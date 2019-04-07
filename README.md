@@ -724,7 +724,7 @@ Ecrire une règle qui alerte à chaque fois que votre système reçoit un ping d
 
 **Reponse :**  
 
-alert icmp any any -> [mon IP] any (msg:"ping depuis n'importe où, vers notre machine (1 sens)"; itype:8; sid:6000006)
+alert icmp any any -> [mon adresse IP] any (msg:"ping depuis n'importe où, vers notre machine (1 sens)"; itype:8; sid:6000006)
 
 - Remplacer [mon adresse IP] par l'adresse de la station qui va être "pingée"
 - Pour ne capturer que les ping entrants, nous avons mis comme adresse de DESTINATION l'adresse IP de la machine qui sera pingée (notre PC dans ce cas) et un sens de lecture de gauche à droite ("->"). 
@@ -748,7 +748,7 @@ Modifier votre règle pour que les pings soient détectés dans les deux sens.
 
 **Reponse :**  
 
-alert icmp any any <> [mon IP] any (msg:"ping depuis/vers n'importe où, depuis/vers notre machine (2 sens)"; itype:8; sid:7000007)
+alert icmp any any <> [mon adresse IP] any (msg:"ping depuis/vers n'importe où, depuis/vers notre machine (2 sens)"; itype:8; sid:7000007)
 
 - Nous avons uniquement changé le sens de lecture de la règle. "->" devient "<>" pour indiquer que la règle se lit dans les deux sens et devient:
 "capture tous les pings vers ou depuis notre adresse IP"
