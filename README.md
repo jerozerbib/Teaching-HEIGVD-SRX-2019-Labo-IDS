@@ -703,7 +703,7 @@ Ecrire une règle qui journalise (sans alerter) un message à chaque fois que Wi
 
 log tcp [mon adresse IP] any -> 91.198.174.192 [80,443] ( sid:50000005)
 
-Remplacer [mon adresser IP] par l'adresse de la station à surveiller.
+Remplacer [mon adresse IP] par l'adresse de la station à surveiller.
 - 91.198.174.192 correspond à l'adresse de Wikipédia
 - [80, 443] correspondent aux ports HTTP(S). Nous aurions pu mettre uniquement 443 car - Wikipédia utilise du https, mais soyons complet !
 - le message a été journalisé dans /var/log/snort/snort.log.X ou X représente le timestamp Unix correspondant à la fin de la capture.
@@ -726,7 +726,7 @@ Ecrire une règle qui alerte à chaque fois que votre système reçoit un ping d
 
 alert icmp any any -> [mon IP] any (msg:"ping depuis n'importe où, vers notre machine (1 sens)"; itype:8; sid:6000006)
 
-- Remplacer [mon adresser IP] par l'adresse de la station qui va être "pingée"
+- Remplacer [mon adresse IP] par l'adresse de la station qui va être "pingée"
 - Pour ne capturer que les ping entrants, nous avons mis comme adresse de DESTINATION l'adresse IP de la machine qui sera pingée (notre PC dans ce cas) et un sens de lecture de gauche à droite ("->"). 
 De plus il faut mettre également comme option le itype:8 (= request, pour éviter les reply) afin de ne journaliser que les ping entrants.
 En effet, nous ne voulons pas enregistrer les réponses dans le cas ou l'on ping notre PC ou les réponses d'autres PC si NOUS effectuons le ping.
